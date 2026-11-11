@@ -27,9 +27,8 @@ jest.mock('@expo/vector-icons', () => ({
 }))
 
 jest.mock('~/components', () => ({
-  HeaderWithBackArrow: jest.requireActual(
-    '~/components/header-with-back-arrow'
-  ).default
+  HeaderWithBackArrow: jest.requireActual('~/components/header-with-back-arrow')
+    .default
 }))
 
 jest.mock('@react-native-masked-view/masked-view', () => {
