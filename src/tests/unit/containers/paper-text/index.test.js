@@ -6,6 +6,8 @@ import { styles } from '~/containers/paper-text/PaperText.styles'
 
 describe('PaperText', () => {
   const mockText = 'Test text'
+  const largeText = { fontSize: 40 }
+  const redText = { color: 'red' }
 
   it('should render children', () => {
     render(<PaperText>{mockText}</PaperText>)
@@ -36,18 +38,18 @@ describe('PaperText', () => {
 
   it('should let custom style override variant style', () => {
     render(
-      <PaperText style={{ fontSize: 40 }} variant='headlineSmall'>
+      <PaperText style={largeText} variant='headlineSmall'>
         {mockText}
       </PaperText>
     )
 
-    expect(screen.getByText(mockText)).toHaveStyle({ fontSize: 40 })
+    expect(screen.getByText(mockText)).toHaveStyle(largeText)
   })
 
   it('should apply custom style without variant', () => {
-    render(<PaperText style={{ color: 'red' }}>{mockText}</PaperText>)
+    render(<PaperText style={redText}>{mockText}</PaperText>)
 
-    expect(screen.getByText(mockText)).toHaveStyle({ color: 'red' })
+    expect(screen.getByText(mockText)).toHaveStyle(redText)
   })
 
   it('should make text bold when bold prop is passed', () => {
