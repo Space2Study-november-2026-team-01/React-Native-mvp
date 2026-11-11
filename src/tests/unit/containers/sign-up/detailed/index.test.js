@@ -23,9 +23,8 @@ jest.mock('@expo/vector-icons', () => ({
 }))
 
 jest.mock('~/components', () => ({
-  HeaderWithBackArrow: jest.requireActual(
-    '~/components/header-with-back-arrow'
-  ).default,
+  HeaderWithBackArrow: jest.requireActual('~/components/header-with-back-arrow')
+    .default,
   Url: jest.requireActual('~/components/url').default
 }))
 
@@ -45,11 +44,15 @@ describe('Sign up DetailedContent', () => {
     )
 
   beforeEach(() => {
+    // Paper animations schedule timers that would fire after the test ends
+    jest.useFakeTimers()
     jest.clearAllMocks()
     jest.spyOn(Linking, 'openURL').mockResolvedValue(true)
   })
 
   afterEach(() => {
+    jest.clearAllTimers()
+    jest.useRealTimers()
     jest.restoreAllMocks()
   })
 
@@ -68,9 +71,7 @@ describe('Sign up DetailedContent', () => {
   it('should disable sign up button until terms are accepted', () => {
     renderDetailedContent()
 
-    expect(
-      screen.getByRole('button', { name: 'signup.signUp' })
-    ).toBeDisabled()
+    expect(screen.getByRole('button', { name: 'signup.signUp' })).toBeDisabled()
   })
 
   it('should sign up after accepting terms', () => {
