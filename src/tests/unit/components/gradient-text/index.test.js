@@ -19,16 +19,13 @@ jest.mock('expo-linear-gradient', () => {
 
   return {
     LinearGradient: ({ colors, children }) =>
-      React.createElement(
-        View,
-        { testID: 'linear-gradient', colors },
-        children
-      )
+      React.createElement(View, { testID: 'linear-gradient', colors }, children)
   }
 })
 
 describe('GradientText', () => {
   const mockText = 'Welcome back!'
+  const largeText = { fontSize: 30 }
 
   it('should render passed text', () => {
     render(<GradientText text={mockText} />)
@@ -54,10 +51,10 @@ describe('GradientText', () => {
   })
 
   it('should apply custom style to the text', () => {
-    render(<GradientText style={{ fontSize: 30 }} text={mockText} />)
+    render(<GradientText style={largeText} text={mockText} />)
 
     expect(screen.getByText(mockText)).toHaveStyle({
-      fontSize: 30,
+      ...largeText,
       backgroundColor: 'transparent'
     })
   })
