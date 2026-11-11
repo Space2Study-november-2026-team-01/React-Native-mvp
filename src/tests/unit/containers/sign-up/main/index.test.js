@@ -18,9 +18,8 @@ jest.mock('@expo/vector-icons', () => ({
 
 jest.mock('~/components', () => ({
   SquareCard: jest.requireActual('~/components/square-card').default,
-  HeaderWithBackArrow: jest.requireActual(
-    '~/components/header-with-back-arrow'
-  ).default
+  HeaderWithBackArrow: jest.requireActual('~/components/header-with-back-arrow')
+    .default
 }))
 
 const getPressableParent = (element) => {
