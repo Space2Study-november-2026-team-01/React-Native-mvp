@@ -8,6 +8,9 @@ describe('Url', () => {
   const mockText = 'Terms'
 
   beforeEach(() => {
+    // Linking.openURL is already a jest.fn in the React Native jest setup,
+    // so its calls have to be cleared between tests
+    jest.clearAllMocks()
     jest.spyOn(Linking, 'openURL').mockResolvedValue(true)
   })
 
